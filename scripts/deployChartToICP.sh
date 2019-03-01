@@ -16,17 +16,17 @@
 
 set -euxo pipefail
 
-CLUSTER=${1:-mycluster.icp}
+CLUSTER=${1:-ipsec.icp}
 
 cd "$(dirname "$0")"
 pwd
 
-helm install \
+helm29 install \
   --tls \
-  --name="acmeair-mainservice-java" \
-  --set-string arch.amd64="3" \
+  --name="acmeair-mainservice-java7" \
+  --set-string arch.amd64="0" \
   --set-string arch.ppc64le="0" \
-  --set-string arch.s390x="0"\
+  --set-string arch.s390x="3"\
   --set image.repository="${CLUSTER}:8500/default/acmeair-mainservice-java" \
   --set image.pullPolicy="Always" \
   --set service.type="ClusterIP" \
@@ -40,12 +40,12 @@ helm install \
   ../chart/ibm-websphere-liberty 
 
   
-helm install \
+helm29 install \
   --tls \
-  --name="acmeair-authservice-java" \
-  --set-string arch.amd64="3" \
+  --name="acmeair-authservice-java5" \
+  --set-string arch.amd64="0" \
   --set-string arch.ppc64le="0" \
-  --set-string arch.s390x="0"\
+  --set-string arch.s390x="3"\
   --set image.repository="${CLUSTER}:8500/default/acmeair-authservice-java" \
   --set image.pullPolicy="Always" \
   --set service.type="ClusterIP" \
@@ -61,12 +61,12 @@ helm install \
   
   
   
-helm install \
+helm29 install \
   --tls \
-  --name="acmeair-bookingservice-java" \
-  --set-string arch.amd64="3" \
+  --name="acmeair-bookingservice-java5" \
+  --set-string arch.amd64="0" \
   --set-string arch.ppc64le="0" \
-  --set-string arch.s390x="0"\
+  --set-string arch.s390x="3"\
   --set image.repository="${CLUSTER}:8500/default/acmeair-bookingservice-java" \
   --set image.pullPolicy="Always" \
   --set service.type="ClusterIP" \
@@ -81,12 +81,12 @@ helm install \
   ../../acmeair-bookingservice-java/chart/ibm-websphere-liberty
 
   
-helm install \
+helm29 install \
   --tls \
-  --name="acmeair-customerservice-java" \
-  --set-string arch.amd64="3" \
+  --name="acmeair-customerservice-java5" \
+  --set-string arch.amd64="0" \
   --set-string arch.ppc64le="0" \
-  --set-string arch.s390x="0"\
+  --set-string arch.s390x="3"\
   --set image.repository="${CLUSTER}:8500/default/acmeair-customerservice-java" \
   --set image.pullPolicy="Always" \
   --set service.type="ClusterIP" \
@@ -101,12 +101,12 @@ helm install \
   ../../acmeair-customerservice-java/chart/ibm-websphere-liberty
   
   
-helm install \
+helm29 install \
   --tls \
-  --name="acmeair-flightservice-java" \
-  --set-string arch.amd64="3" \
+  --name="acmeair-flightservice-java5" \
+  --set-string arch.amd64="0" \
   --set-string arch.ppc64le="0" \
-  --set-string arch.s390x="0"\
+  --set-string arch.s390x="3"\
   --set image.repository="${CLUSTER}:8500/default/acmeair-flightservice-java" \
   --set image.pullPolicy="Always" \
   --set service.type="ClusterIP" \
